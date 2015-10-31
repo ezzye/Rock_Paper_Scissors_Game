@@ -39,6 +39,15 @@ class RPS < Sinatra::Base
     end
   end
 
+  get '/play' do
+    @game = $game
+    if @game.user == nil
+      redirect '/'
+    else
+      erb :play
+    end
+  end
+
   get '/end_game' do
     $game = nil
     redirect '/'
