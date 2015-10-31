@@ -3,8 +3,9 @@ feature 'Show home page' do
     visit('/')
     expect(page).to have_content('Welcome to the Makers Rock, Paper, Scissors Game')
   end
-  scenario 'instructions' do
+  scenario 'instructions for new game' do
     visit('/')
-    expect(page).to have_content('Register or login then click play.')
+    click_link('log out')
+    expect(page).to have_content('Register or login before playing')
   end
 end
