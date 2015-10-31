@@ -2,9 +2,11 @@ require 'sinatra/base'
 require './lib/game'
 require './lib/user_log'
 
+$userlog1 = UserLog.new
+
 class RPS < Sinatra::Base
 
-  $userlog1 = UserLog.new
+
 
   get '/' do
     if $game == nil then $game = Game.new end
@@ -22,18 +24,20 @@ class RPS < Sinatra::Base
 
   post '/reg_start' do
     user = User.new(params[:username],params[:useremail])
+    user2 = User.new('Computer','example@email.com')
     $userlog1.add_user(user)
-    $game = Game.new(user)
+    $game = Game.new(user,user2)
     @game = $game
     redirect '/'
   end
 
   post '/log_start' do
     user = $userlog1.find_user_by_username(params[:username])
+    user2 = User.new('Computer','example@email.com')
     if user == nil
       redirect '/register'
     else
-      $game = Game.new(user)
+      $game = Game.new(user,user2)
       @game = $game
       redirect '/'
     end
@@ -46,6 +50,24 @@ class RPS < Sinatra::Base
     else
       erb :play
     end
+  end
+
+  get '/rock' do
+    @game = $game
+    @game.user.play(:rock)
+    erb :result
+  end
+
+  get '/paper' do
+    @game = $game
+    @game.user.play(:paper)
+    erb :result
+  end
+
+  get '/scissors' do
+    @game = $game
+    @game.user.play(:scissors)
+    erb :result
   end
 
   get '/end_game' do
