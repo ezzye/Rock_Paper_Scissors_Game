@@ -1,4 +1,4 @@
-feature 'allow user to register' do
+feature 'Allow user to register or login' do
   scenario 'new user clicks on register' do
     visit('/')
     click_link('register')
@@ -13,21 +13,40 @@ feature 'allow user to register' do
     expect(page).to have_content('Hi Ezzy, click play to start game')
   end
     scenario 'log out of game' do
-    visit('/')
-    click_link('register')
-    fill_in(:username, with: 'Ezzy')
-    fill_in(:useremail, with: 'ezzy.elliott@gmail.com')
-    click_button('Submit')
-    click_link('log out')
-    expect(page).to have_content('Register or login before playing')
+      visit('/')
+      click_link('register')
+      fill_in(:username, with: 'Ezzy')
+      fill_in(:useremail, with: 'ezzy.elliott@gmail.com')
+      click_button('Submit')
+      click_link('log out')
+      expect(page).to have_content('Register or login before playing')
   end
+    scenario 'log in to game' do
+      visit('/')
+      click_link('register')
+      fill_in(:username, with: 'Ezzy')
+      fill_in(:useremail, with: 'ezzy.elliott@gmail.com')
+      click_button('Submit')
+      click_link('log out')
+      click_link('log in')
+      fill_in(:username, with: 'Ezzy')
+      click_button('Submit')
+      expect(page).to have_content('Hi Ezzy, click play to start game')
+    end
+    scenario 'log in to game after delay' do
+      visit('/')
+      click_link('log in')
+      fill_in(:username, with: 'Ezzy')
+      click_button('Submit')
+      expect(page).to have_content('Hi Ezzy, click play to start game')
+    end
+    scenario 'log in when not registered' do
+      visit('/')
+      click_link('log in')
+      fill_in(:username, with: 'Nobody')
+      click_button('Submit')
+      expect(page).to have_content('Register to play')
+    end
+
 end
 
-
-
-
-
-
-
-feature 'allow user to login' do
-end
