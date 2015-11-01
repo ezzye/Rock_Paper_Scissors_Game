@@ -3,7 +3,7 @@ require 'forwardable'
 class Game
 
   extend Forwardable
-  attr_reader :message, :user, :user2
+  attr_reader :message, :user, :user2, :variant
 
   def_delegator :user, :name, :user_name
   def_delegator :user, :email, :user_email
@@ -24,7 +24,20 @@ class Game
     @message = "Register or login before playing"
     (@user = users.first) unless users.empty?
     (@user2 = users.last) unless users.length < 2
-    @message = "Hi #{@user.name}, click play to start game" unless users.empty? #change to play computer or login or register human opponent
+    @message = "Hi #{@user.name}, click play to start game" unless users.empty?
+    @variant = 'rps'
+  end
+
+  def play_spock
+    self.variant = 'spock'
+  end
+
+  def play_rps
+    self.variant = 'rps'
+  end
+
+  def spock?
+    variant == 'spock'
   end
 
   def update_score
@@ -43,9 +56,11 @@ class Game
   private
 
   def winner
-    return user if user.pick == :rock && user2.pick == :scissors
-    return user if user.pick == :scissors && user2.pick == :paper
-    return user if user.pick == :paper && user2.pick == :rock
+    return user if user.pick == :rock && ((user2.pick == :scissors) || (user2.pick == :lizard))
+    return user if user.pick == :scissors && ((user2.pick == :paper) || (user2.pick == :lizard))
+    return user if user.pick == :paper && ((user2.pick == :rock) || (user2.pick == :spock))
+    return user if user.pick == :spock && ((user2.pick == :rock) || (user2.pick == :scissors))
+    return user if user.pick == :lizard && ((user2.pick == :spock) || (user2.pick == :paper))
     user2
   end
 
@@ -53,7 +68,7 @@ class Game
     winner == user ? user2 : user
   end
 
-  attr_writer :message, :user
+  attr_writer :message, :user, :variant
 
 
 end

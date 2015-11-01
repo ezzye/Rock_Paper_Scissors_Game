@@ -18,7 +18,7 @@ describe Game do
       end
     end
   end
-  describe '#decide_result' do
+  describe '#update_score' do
     it 'updates user scores based on picks' do
       allow(ezzy).to receive(:pick=)
       allow(computer).to receive(:pick=)
@@ -37,6 +37,12 @@ describe Game do
       game.update_score
       expect(game.user.score).to eq 0
       expect(game.user2.score).to eq 1
+    end
+  end
+  describe '#spock?' do
+    it 'set spock ' do
+      game.play_spock
+      expect(game).to be_spock
     end
   end
 end
