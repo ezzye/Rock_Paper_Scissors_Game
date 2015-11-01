@@ -6,7 +6,7 @@ $userlog1 = UserLog.new
 
 class RPS < Sinatra::Base
 
-
+choices = [:rock,:paper,:scissors]
 
   get '/' do
     if $game == nil then $game = Game.new end
@@ -55,7 +55,7 @@ class RPS < Sinatra::Base
   get '/rock' do
     @game = $game
     @game.user.pick = :rock
-    @game.user2.pick = :paper
+    @game.user2.pick = RandPick.run(choices)
     @game.update_score
     erb :result
   end

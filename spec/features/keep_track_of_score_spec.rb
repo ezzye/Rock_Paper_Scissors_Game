@@ -11,6 +11,7 @@ feature 'Show initial score' do
 end
 feature 'Show score on result page after making a selction' do
   scenario 'select rock either computer or Ezzy with 1/1 with appropriate winner' do
+    srand(101)
     visit('/')
     click_link('register')
     fill_in(:username, with: 'Ezzy')
@@ -18,6 +19,32 @@ feature 'Show score on result page after making a selction' do
     click_button('Submit')
     click_link('play')
     click_link('R O C K')
-    expect(page).to (have_content('*WINNER*  Computer: 1/1 vs. Ezzy: 0/1  *LOSER*') || have_content('*LOSER*  Computer: 0/1 vs. Ezzy: 1/1  *WINNER*'))
+    expect(page).to have_content('*WINNER*  Computer: 1/1 vs. Ezzy: 0/1  *LOSER*')
+  end
+end
+feature 'Show score on result page after making a selction' do
+  scenario 'select rock either computer or Ezzy with 1/1 with appropriate winner' do
+    srand(102)
+    visit('/')
+    click_link('register')
+    fill_in(:username, with: 'Ezzy')
+    fill_in(:useremail, with: 'ezzy.elliott@gmail.com')
+    click_button('Submit')
+    click_link('play')
+    click_link('R O C K')
+    expect(page).to have_content('*DRAW*  Computer: 0/1 vs. Ezzy: 0/1  *DRAW*')
+  end
+end
+feature 'Show score on result page after making a selction' do
+  scenario 'select rock either computer or Ezzy with 1/1 with appropriate winner' do
+    srand(106)
+    visit('/')
+    click_link('register')
+    fill_in(:username, with: 'Ezzy')
+    fill_in(:useremail, with: 'ezzy.elliott@gmail.com')
+    click_button('Submit')
+    click_link('play')
+    click_link('R O C K')
+    expect(page).to have_content('*LOSER*  Computer: 0/1 vs. Ezzy: 1/1  *WINNER*')
   end
 end
