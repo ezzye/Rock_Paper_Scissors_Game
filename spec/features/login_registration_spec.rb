@@ -17,11 +17,13 @@ feature 'Allow user to register or login' do
       register_ezzy
       click_link('log out')
       login_ezzy
+      click_link('play computer')
       expect(page).to have_content('Hi Ezzy, click play to start game')
     end
     scenario 'log in to game after delay' do
       visit('/')
       login_ezzy
+      click_link('play computer')
       expect(page).to have_content('Hi Ezzy, click play to start game')
     end
     scenario 'log in when not registered' do

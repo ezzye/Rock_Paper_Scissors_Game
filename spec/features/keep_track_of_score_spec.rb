@@ -5,7 +5,7 @@ feature 'Show initial score' do
     fill_in(:username, with: 'Ezzy')
     fill_in(:useremail, with: 'ezzy.elliott@gmail.com')
     click_button('Submit')
-    click_link('play')
+    click_link('play computer')
     expect(page).to have_content('Computer: 0/0 vs. Ezzy: 0/0')
   end
 end

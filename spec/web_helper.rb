@@ -4,7 +4,7 @@ def play_rock
   fill_in(:username, with: 'Ezzy')
   fill_in(:useremail, with: 'ezzy.elliott@gmail.com')
   click_button('Submit')
-  click_link('play')
+  click_link('play computer')
   click_link('R O C K')
 end
 
@@ -17,8 +17,21 @@ def register_ezzy
   click_button('Submit')
 end
 
+def register_doral
+  click_link('register player 2')
+  fill_in(:username, with: 'Doral')
+  fill_in(:useremail, with: 'doral.elliott@gmail.com')
+  click_button('Submit')
+end
+
 def login_ezzy
   click_link('log in')
   fill_in(:username, with: 'Ezzy')
+  click_button('Submit')
+end
+
+def login_doral
+  click_link('log in player 2')
+  fill_in(:username, with: 'Doral')
   click_button('Submit')
 end

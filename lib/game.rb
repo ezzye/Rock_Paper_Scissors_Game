@@ -24,7 +24,7 @@ class Game
     @message = "Register or login before playing"
     (@user = users.first) unless users.empty?
     (@user2 = users.last) unless users.length < 2
-    @message = "Hi #{@user.name}, click play to start game" unless users.empty?
+    @message = "Hi #{@user.name}, click play to start game" unless users.empty? #change to play computer or login or register human opponent
   end
 
   def update_score

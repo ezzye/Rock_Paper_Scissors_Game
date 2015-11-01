@@ -9,7 +9,6 @@ feature 'Rock scissors paper play board' do
   scenario 'shows play board when logged in and play selected' do
     visit('/')
     click_link('log out')
-    click_link('play')
     expect(page).to have_content('Register or login before playing')
   end
   scenario 'shows play board rock, scissor  paper options' do
