@@ -63,7 +63,7 @@ choices = [:rock,:paper,:scissors]
   get '/paper' do
     @game = $game
     @game.user.pick = :paper
-    @game.user2.pick = :paper
+    @game.user2.pick = RandPick.run(choices)
     @game.update_score
     erb :result
   end
@@ -71,7 +71,7 @@ choices = [:rock,:paper,:scissors]
   get '/scissors' do
     @game = $game
     @game.user.pick = :scissors
-    @game.user2.pick = :paper
+    @game.user2.pick = RandPick.run(choices)
     @game.update_score
     erb :result
   end

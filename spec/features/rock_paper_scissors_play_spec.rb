@@ -2,10 +2,7 @@ feature 'Rock scissors paper play board' do
   scenario 'shows play board when register and play selected' do
     visit('/')
     click_link('log out')
-    click_link('register')
-    fill_in(:username, with: 'Ezzy')
-    fill_in(:useremail, with: 'ezzy.elliott@gmail.com')
-    click_button('Submit')
+    register_ezzy
     click_link('play')
     expect(page).to have_content('Computer vs. Ezzy : select rock, scissors or paper')
   end
@@ -17,9 +14,7 @@ feature 'Rock scissors paper play board' do
   end
   scenario 'shows play board rock, scissor  paper options' do
     visit('/')
-    click_link('log in')
-    fill_in(:username, with: 'Ezzy')
-    click_button('Submit')
+    login_ezzy
     click_link('play')
     expect(page).to have_content('R O C K P A P E R S C I S S O R S')
   end

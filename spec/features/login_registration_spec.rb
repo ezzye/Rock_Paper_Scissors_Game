@@ -5,39 +5,23 @@ feature 'Allow user to register or login' do
     expect(page).to have_content('Register to play')
   end
   scenario 'fill in registration form' do
-    visit('/')
-    click_link('register')
-    fill_in(:username, with: 'Ezzy')
-    fill_in(:useremail, with: 'ezzy.elliott@gmail.com')
-    click_button('Submit')
+    register_ezzy
     expect(page).to have_content('Hi Ezzy, click play to start game')
   end
     scenario 'log out of game' do
-      visit('/')
-      click_link('register')
-      fill_in(:username, with: 'Ezzy')
-      fill_in(:useremail, with: 'ezzy.elliott@gmail.com')
-      click_button('Submit')
+      register_ezzy
       click_link('log out')
       expect(page).to have_content('Register or login before playing')
   end
     scenario 'log in to game' do
-      visit('/')
-      click_link('register')
-      fill_in(:username, with: 'Ezzy')
-      fill_in(:useremail, with: 'ezzy.elliott@gmail.com')
-      click_button('Submit')
+      register_ezzy
       click_link('log out')
-      click_link('log in')
-      fill_in(:username, with: 'Ezzy')
-      click_button('Submit')
+      login_ezzy
       expect(page).to have_content('Hi Ezzy, click play to start game')
     end
     scenario 'log in to game after delay' do
       visit('/')
-      click_link('log in')
-      fill_in(:username, with: 'Ezzy')
-      click_button('Submit')
+      login_ezzy
       expect(page).to have_content('Hi Ezzy, click play to start game')
     end
     scenario 'log in when not registered' do
