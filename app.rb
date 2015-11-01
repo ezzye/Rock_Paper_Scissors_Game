@@ -32,6 +32,11 @@ choices = [:rock,:paper,:scissors]
     erb :login2
   end
 
+  get '/play2' do
+    @game = $game
+    erb :play2
+  end
+
   post '/reg_start' do #reg user1
     user = User.new(params[:username],params[:useremail])
     $userlog1.add_user(user)
@@ -119,21 +124,21 @@ choices = [:rock,:paper,:scissors]
   get '/rock2' do
     @game = $game
     @game.user.pick = :rock
-    @game.update_score
+    # @game.update_score
     erb :result2
   end
 
   get '/paper2' do
     @game = $game
     @game.user.pick = :paper
-    @game.update_score
+    # @game.update_score
     erb :result2
   end
 
   get '/scissors2' do
     @game = $game
     @game.user.pick = :scissors
-    @game.update_score
+    # @game.update_score
     erb :result2
   end
 
