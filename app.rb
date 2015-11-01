@@ -54,19 +54,25 @@ class RPS < Sinatra::Base
 
   get '/rock' do
     @game = $game
-    @game.user.play(:rock)
+    @game.user.pick = :rock
+    @game.user2.pick = :paper
+    @game.update_score
     erb :result
   end
 
   get '/paper' do
     @game = $game
-    @game.user.play(:paper)
+    @game.user.pick = :paper
+    @game.user2.pick = :paper
+    @game.update_score
     erb :result
   end
 
   get '/scissors' do
     @game = $game
-    @game.user.play(:scissors)
+    @game.user.pick = :scissors
+    @game.user2.pick = :paper
+    @game.update_score
     erb :result
   end
 

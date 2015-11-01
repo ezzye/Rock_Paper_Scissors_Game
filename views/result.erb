@@ -1,0 +1,8 @@
+<div class='welcome' style='text-align: center'>Welcome to the Makers Rock, Paper, Scissors Game</div>
+<div class='register' style='text-align: center'><a href='/register'>register</a></div>
+<div class='login' style='text-align: center'><a href='/login'>log in</a></div>
+<div class='end_game' style='text-align: center'><a href='/end_game'>log out</a></div>
+<div class='instructions' style='text-align: center'><%= @game.message %></div>
+<div class='play' style='text-align: center'><%= @game.user2.name %> vs. <%= @game.user.name %> : result</div>
+<div class='score' style='text-align: center'>|||<%= @game.user2.pick.upcase %>|||*<%= @game.user2.results.last.upcase %>*  <%= @game.user2.name %>: <%= @game.user2.score %>/<%= @game.user2.played %> vs. <%= @game.user.name %>: <%= @game.user.score %>/<%= @game.user.played %>  *<%= @game.user.results.last.upcase %>*|||<%= @game.user.pick.upcase %>|||</div>
+<div class='play' style='text-align: center'><a href='/play again'>play</a></div>
