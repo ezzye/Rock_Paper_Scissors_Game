@@ -5,7 +5,7 @@ def play_rock
   fill_in(:useremail, with: 'ezzy.elliott@gmail.com')
   click_button('Submit')
   click_link('play computer')
-  click_link('R O C K')
+  click_button('rock')
 end
 
 

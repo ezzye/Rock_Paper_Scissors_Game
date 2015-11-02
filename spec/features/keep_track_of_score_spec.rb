@@ -36,7 +36,7 @@ feature 'Show score on playing again' do
     play_rock
     click_link('play again')
     srand(106)
-    click_link('P A P E R')
+    click_button('paper')
     expect(page).to have_content('*WINNER*  Computer: 1/2 vs. Ezzy: 1/2  *LOSER*')
   end
 end

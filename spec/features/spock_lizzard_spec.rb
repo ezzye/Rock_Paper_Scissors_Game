@@ -22,7 +22,7 @@ feature 'Take turns at either RPS or Spock Lizard one player' do
     click_link('play computer')
     click_link('Spock Lizzard')
     srand(103)
-    click_link('S P O C K')
+    click_button('spock')
     expect(page).to have_content('*WINNER*  Computer: 1/1 vs. Ezzy: 0/1  *LOSER*')
   end
   scenario 'select RPS after selecting spock lizard' do
@@ -31,7 +31,7 @@ feature 'Take turns at either RPS or Spock Lizard one player' do
     click_link('play computer')
     click_link('Spock Lizzard')
     click_link('Traditional RPS')
-    click_link('R O C K')
+    click_button('rock')
     srand(101)
     expect(page).to have_content('*WINNER*  Computer: 1/1 vs. Ezzy: 0/1  *LOSER*')
   end
