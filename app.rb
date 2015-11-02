@@ -132,73 +132,20 @@ choices = $choices
   post '/my_choice' do
     @game = $game
     @game.user.pick = params[:my_choice].to_sym
-    p @game.user.pick #test
     @game.user2.pick = RandPick.run($choices)
     @game.update_score
     erb :result
   end
 
-  get '/rock2' do
+  post '/my_choice2' do
     @game = $game
-    @game.user.pick = :rock
+    @game.user.pick = params[:my_choice].to_sym
     erb :result2
   end
 
-  get '/paper2' do
+  post '/my_choice3' do
     @game = $game
-    @game.user.pick = :paper
-    erb :result2
-  end
-
-  get '/spock2' do
-    @game = $game
-    @game.user.pick = :spock
-    erb :result2
-  end
-
-    get '/lizard2' do
-    @game = $game
-    @game.user.pick = :lizard
-    erb :result2
-  end
-
-  get '/scissors2' do
-    @game = $game
-    @game.user.pick = :scissors
-    erb :result2
-  end
-
-   get '/rock3' do
-    @game = $game
-    @game.user2.pick = :rock
-    @game.update_score
-    erb :result3
-  end
-
-  get '/paper3' do
-    @game = $game
-    @game.user2.pick = :paper
-    @game.update_score
-    erb :result3
-  end
-
-  get '/scissors3' do
-    @game = $game
-    @game.user2.pick = :scissors
-    @game.update_score
-    erb :result3
-  end
-
-    get '/spock3' do
-    @game = $game
-    @game.user2.pick = :spock
-    @game.update_score
-    erb :result3
-  end
-
-    get '/lizard3' do
-    @game = $game
-    @game.user2.pick = :lizard
+    @game.user2.pick = params[:my_choice].to_sym
     @game.update_score
     erb :result3
   end

@@ -28,32 +28,32 @@ feature 'Two human opponents takign turns playing' do
   scenario 'pay one round Doral winner' do
     register_ezzy
     register_doral
-    click_link('R O C K')
-    click_link('P A P E R')
+    click_button('rock')
+    click_button('paper')
     expect(page).to have_content('*WINNER*  Doral: 1/1 vs. Ezzy: 0/1  *LOSER*')
   end
   scenario 'pay one round Ezzy winner' do
     register_ezzy
     register_doral
-    click_link('P A P E R')
-    click_link('R O C K')
+    click_button('paper')
+    click_button('rock')
     expect(page).to have_content('*LOSER*  Doral: 0/1 vs. Ezzy: 1/1  *WINNER*')
   end
   scenario 'pay one round a draw' do
     register_ezzy
     register_doral
-    click_link('S C I S S O R S')
-    click_link('S C I S S O R S')
+    click_button('scissors')
+    click_button('scissors')
     expect(page).to have_content('*DRAW*  Doral: 0/1 vs. Ezzy: 0/1  *DRAW*')
   end
   scenario 'pay one round a draw and play again Doral winning' do
     register_ezzy
     register_doral
-    click_link('S C I S S O R S')
-    click_link('S C I S S O R S')
+    click_button('scissors')
+    click_button('scissors')
     click_link('play again')
-    click_link('R O C K')
-    click_link('P A P E R')
+    click_button('rock')
+    click_button('paper')
     expect(page).to have_content('*WINNER*  Doral: 1/2 vs. Ezzy: 0/2  *LOSER*')
   end
 end

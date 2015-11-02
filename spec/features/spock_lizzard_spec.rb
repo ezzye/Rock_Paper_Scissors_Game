@@ -42,8 +42,8 @@ feature 'Take turns at either RPS or Spock Lizard one player (MULTIPLAYER)' do
     register_ezzy
     register_doral
     click_link('Spock Lizzard')
-    click_link('S P O C K')
-    click_link('L I Z A R D')
+    click_button('spock')
+    click_button('lizard')
     expect(page).to have_content('*WINNER*  Doral: 1/1 vs. Ezzy: 0/1  *LOSER*')
   end
   scenario 'select RPS after selecting spock lizard' do
@@ -51,8 +51,8 @@ feature 'Take turns at either RPS or Spock Lizard one player (MULTIPLAYER)' do
     register_ezzy
     register_doral
     click_link('Traditional RPS')
-    click_link('R O C K')
-    click_link('P A P E R')
+    click_button('rock')
+    click_button('paper')
     expect(page).to have_content('*WINNER*  Doral: 1/1 vs. Ezzy: 0/1  *LOSER*')
   end
 end

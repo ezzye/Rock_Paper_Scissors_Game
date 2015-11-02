@@ -6,11 +6,22 @@
 <div class='login' style='text-align: center'><a href='/spock_lizard2'>Spock Lizzard</a></div>
 <div class='instructions' style='text-align: center'><%= @game.message %></div>
 <div class='play' style='text-align: center'><%= @game.user2_name %> vs. <%= @game.user_name %> : <b><%= @game.user_name %> </b>select rock, scissors or paper</div>
-<div class='rock' style='text-align: center'><a href='/rock2'>R O C K</a></div>
-<div class='paper' style='text-align: center'><a href='/paper2'>P A P E R</a></div>
-<div class='scissors' style='text-align: center'><a href='/scissors2'>S C I S S O R S</a></div>
+
+<center>
+  <form action='/my_choice2' method='post'>
+  <button type='submit' name='my_choice' value='rock' >R O C K</button></form>
+  <form action='/my_choice2' method='post'>
+  <button type='submit' name='my_choice' value='paper' >P A P E R</button></form>
+  <form action='/my_choice2' method='post'>
+  <button type='submit' name='my_choice' value='scissors' >S C I S S O R S</button></form>
+</center>
 <% if @game.spock? %>
-<div class='spock' style='text-align: center'><a href='/spock2'>S P O C K</a></div>
-<div class='lizard' style='text-align: center'><a href='/lizard2'>L I Z A R D</a></div>
+<center>
+  <form action='/my_choice2' method='post'>
+  <button type='submit' name='my_choice' value='spock' >S P O C K</button></form>
+  <form action='/my_choice2' method='post'>
+  <button type='submit' name='my_choice' value='lizard' >L I Z A R D</button></form>
+</center>
 <% end %>
+
 <div class='score' style='text-align: center'><%= @game.user2_name %>: <%= @game.user2_score %>/<%= @game.user2_played %> vs. <%= @game.user_name %>: <%= @game.user_score %>/<%= @game.user_played %></div>
