@@ -7,4 +7,8 @@
 <div class='rock' style='text-align: center'><a href='/rock3'>R O C K</a></div>
 <div class='paper' style='text-align: center'><a href='/paper3'>P A P E R</a></div>
 <div class='scissors' style='text-align: center'><a href='/scissors3'>S C I S S O R S</a></div>
+<% if @game.spock? %>
+<div class='spock' style='text-align: center'><a href='/spock3'>S P O C K</a></div>
+<div class='lizard' style='text-align: center'><a href='/lizard3'>L I Z A R D</a></div>
+<% end %>
 <div class='score' style='text-align: center'><%= @game.user2_name %>: <%= @game.user2_score %>/<%= @game.user2_played %> vs. <%= @game.user_name %>: <%= @game.user_score %>/<%= @game.user_played %></div>

@@ -41,6 +41,22 @@ choices = $choices
     erb :play
   end
 
+    get '/spock_lizard2' do
+    @game = $game
+    @game.play_spock
+    $game = @game
+    $choices = [:rock,:paper,:scissors,:spock,:lizard]
+    erb :play2
+  end
+
+  get '/rps2' do
+    @game = $game
+    @game.play_rps
+    $game = @game
+    $choices = [:rock,:paper,:scissors]
+    erb :play2
+  end
+
   get '/register2' do
     erb :register2
   end
@@ -165,6 +181,18 @@ choices = $choices
     erb :result2
   end
 
+  get '/spock2' do
+    @game = $game
+    @game.user.pick = :spock
+    erb :result2
+  end
+
+    get '/lizard2' do
+    @game = $game
+    @game.user.pick = :lizard
+    erb :result2
+  end
+
   get '/scissors2' do
     @game = $game
     @game.user.pick = :scissors
@@ -188,6 +216,20 @@ choices = $choices
   get '/scissors3' do
     @game = $game
     @game.user2.pick = :scissors
+    @game.update_score
+    erb :result3
+  end
+
+    get '/spock3' do
+    @game = $game
+    @game.user2.pick = :spock
+    @game.update_score
+    erb :result3
+  end
+
+    get '/lizard3' do
+    @game = $game
+    @game.user2.pick = :lizard
     @game.update_score
     erb :result3
   end
