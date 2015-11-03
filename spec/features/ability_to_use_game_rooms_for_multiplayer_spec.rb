@@ -1,11 +1,28 @@
 feature 'Create game room for multiplayer' do
-  scenario 'create a game room' do
+  scenario 'play an opponent Ezzy vs Doral' do
     visit('/')
     register_ezzy
-    click_link('next turn')
+    click_link('multiplayer')
     click_button('rock')
-    click_button('Request player2: turn')
-    expect(page).to have_content('REFRESH to see if player2 has played')
+    visit('/')
+    register_doral
+    click_button('rock')
+    click_button('Ezzy: 0/0 vs. waiting')
+    expect(page).to have_content('Ezzy: 0/1 vs. Doral: 0/1')
+  end
+  scenario 'create room and see result' do
+    visit('/')
+    register_ezzy
+    click_link('multiplayer')
+    click_button('rock')
+    visit('/')
+    register_doral
+    click_button('rock')
+    click_button('Ezzy: 0/0 vs. waiting')
+    visit('/')
+    login_ezzy
+    click_link('multiplayer')
+    expect(page).to have_content('Ezzy: 0/1 vs. Doral: 0/1')
   end
   # scenario 'enter a game room' do
   #   visit('/')
