@@ -25,6 +25,11 @@ choices = $choices
     erb :login
   end
 
+  get '/multiplayer' do
+    @game = $game
+    erb :multiplayer
+  end
+
   get '/spock_lizard' do
     @game = $game
     @game.play_spock
@@ -148,6 +153,12 @@ choices = $choices
     @game.user2.pick = params[:my_choice].to_sym
     @game.update_score
     erb :result3
+  end
+
+  post '/my_choice4' do
+    @game = $game
+    @game.user.pick = params[:my_choice].to_sym
+    erb :user3
   end
 
   get '/end_game' do
