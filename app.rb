@@ -164,6 +164,7 @@ enable :sessions
   get '/end_game' do
     session["user"] = nil
     $game = nil
+    $userlog = nil
     redirect '/'
   end
 
@@ -172,10 +173,20 @@ enable :sessions
     erb :multiplayer
   end
 
+  post '/take_turn' do
+    @game = $game
+    user2 = $userlog1.find_user_by_username(params[:user2])
+    user = $userlog1.find_user_by_username(session["user"])
+    $game = Game.new(user,user2)
+    @game = $game
+    erb :result
+  end
+
   post '/my_choice4' do
     @game = $game
     @user = $userlog1.find_user_by_username(session["user"])
     @user.pick = params[:my_choice].to_sym
+    @userlog=$userlog1.userlog
     erb :user3
   end
 

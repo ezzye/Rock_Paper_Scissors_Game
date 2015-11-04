@@ -12,15 +12,17 @@ feature 'Create game room for multiplayer' do
   end
   scenario 'create turn' do
     visit('/')
+    click_link('log out')
     register_ezzy
     click_link('next turn')
     click_button('rock')
-    expect(page).to have_content('Ezzy: 0/1 vs. waiting')
+    click_button('click to play Ezzy')
+    expect(page).to have_content('Ezzy: 0/1 vs. Ezzy: 0/1')
   end
   # scenario 'play an opponent Ezzy vs Doral' do
   #   visit('/')
   #   register_ezzy
-  #   click_link('multiplayer')
+  #   click_link('next turn')
   #   click_button('rock')
   #   visit('/')
   #   register_doral
