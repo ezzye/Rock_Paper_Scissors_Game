@@ -4,13 +4,18 @@ require './lib/user'
 require './lib/user_log'
 require './lib/rand_pick'
 
+
+
 $userlog1 = UserLog.new
 
 class RPS < Sinatra::Base
 
 choices = $choices
 
+enable :sessions
+
   get '/' do
+    session["user"] ||= nil
     if $game == nil then $game = Game.new end
     @game = $game
     $choices = [:rock,:paper,:scissors]
@@ -25,10 +30,7 @@ choices = $choices
     erb :login
   end
 
-  get '/multiplayer' do
-    @game = $game
-    erb :multiplayer
-  end
+
 
   get '/spock_lizard' do
     @game = $game
@@ -75,21 +77,7 @@ choices = $choices
     erb :play2
   end
 
-  post '/reg_start' do
-    user = User.new(params[:username],params[:useremail])
-    $userlog1.add_user(user)
-    redirect '/user2'
-  end
 
-  post '/log_start' do
-    user = $userlog1.find_user_by_username(params[:username])
-    if user == nil
-      redirect '/register'
-    else
-      $userlog1.add_user(user)
-      redirect '/user2'
-    end
-  end
 
   post '/reg_start2' do
     user2 = User.new(params[:username],params[:useremail])
@@ -155,16 +143,43 @@ choices = $choices
     erb :result3
   end
 
-  post '/my_choice4' do
-    @game = $game
-    @game.user.pick = params[:my_choice].to_sym
-    erb :user3
+  post '/reg_start' do
+    session["user"] = params[:username]
+    user = User.new(params[:username],params[:useremail])
+    $userlog1.add_user(user)
+    redirect '/user2'
+  end
+
+  post '/log_start' do
+    session["user"] = params[:username]
+    user = $userlog1.find_user_by_username(params[:username])
+    if user == nil
+      redirect '/register'
+    else
+      $userlog1.add_user(user)
+      redirect '/user2'
+    end
   end
 
   get '/end_game' do
+    session["user"] = nil
     $game = nil
     redirect '/'
   end
+
+  get '/multiplayer' do
+    @game = $game
+    erb :multiplayer
+  end
+
+  post '/my_choice4' do
+    @game = $game
+    @user = $userlog1.find_user_by_username(session["user"])
+    @user.pick = params[:my_choice].to_sym
+    erb :user3
+  end
+
+
 
   # start the server if ruby file executed directly
   run! if app_file == $0

@@ -5,8 +5,6 @@
 <div class='login' style='text-align: center'><a href='/spock_lizard'>Spock Lizzard</a></div>
 <div class='end_game' style='text-align: center'><a href='/end_game'>log out</a></div>
 <div class='instructions' style='text-align: center'><%= @game.message %></div>
-<div class='play' style='text-align: center'><%= @game.user2_name %> vs. <%= @game.user_name %> : select rock, scissors or paper</div>
-
 <center>
   <form action='/my_choice4' method='post'>
   <button type='submit' name='my_choice' value='rock' >R O C K</button></form>
@@ -23,4 +21,3 @@
   <button type='submit' name='my_choice' value='lizard' >L I Z A R D</button></form>
 </center>
 <% end %>
-<div class='score' style='text-align: center'><%= @game.user2_name %>: <%= @game.user2_score %>/<%= @game.user2_played %> vs. <%= @game.user_name %>: <%= @game.user_score %>/<%= @game.user_played %></div>
